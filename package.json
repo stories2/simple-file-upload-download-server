@@ -2,9 +2,12 @@
   "name": "simple-file-upload-download-server",
   "version": "0.0.1",
   "private": true,
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/cors": "^2.8.6"
+  },
   "dependencies": {
     "@types/node": "^8.0.28",
+    "cors": "^2.8.5",
     "express": "^4.15.4",
     "fs": "0.0.1-security",
     "http": "0.0.0",

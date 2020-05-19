@@ -3,6 +3,7 @@
 import * as express from "express";
 import { Server, Path, GET, PathParam, Return, POST, FileParam, FormParam, QueryParam } from "typescript-rest";
 import * as fs from 'fs';
+import * as cors from "cors";
 
 const port:string = process.argv[2] || process.env.PORT || '3000';
 const filesDir:string = process.argv[3] || process.env.DIR || __dirname;
@@ -42,6 +43,8 @@ class FileService {
  
 let app: express.Application = express();
 Server.buildServices(app);
+
+app.use(cors);
 
 app.listen(port, function() {
     console.log('Server listening on port ' + port);

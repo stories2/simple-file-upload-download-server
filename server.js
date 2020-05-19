@@ -12,10 +12,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -23,6 +24,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const typescript_rest_1 = require("typescript-rest");
 const fs = require("fs");
+const cors = require("cors");
 const port = process.argv[2] || process.env.PORT || '3000';
 const filesDir = process.argv[3] || process.env.DIR || __dirname;
 const serverUrl = process.argv[4] || process.env.SERVER || 'http://localhost';
@@ -76,6 +78,7 @@ FileService = __decorate([
 ], FileService);
 let app = express();
 typescript_rest_1.Server.buildServices(app);
+app.use(cors);
 app.listen(port, function () {
     console.log('Server listening on port ' + port);
     console.log('use commande : ' + instructions);
