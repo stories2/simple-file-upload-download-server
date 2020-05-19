@@ -77,8 +77,8 @@ FileService = __decorate([
     typescript_rest_1.Path("/")
 ], FileService);
 let app = express();
+app.use(cors());
 typescript_rest_1.Server.buildServices(app);
-app.use(cors);
 app.listen(port, function () {
     console.log('Server listening on port ' + port);
     console.log('use commande : ' + instructions);

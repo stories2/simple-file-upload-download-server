@@ -42,9 +42,9 @@ class FileService {
 }
  
 let app: express.Application = express();
+app.use(cors());
 Server.buildServices(app);
 
-app.use(cors);
 
 app.listen(port, function() {
     console.log('Server listening on port ' + port);
